@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador e Validador de CPF</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔢 Gerador e Validador de CPF</h1>
+        
+        <div class="info-section">
+            <h2>📋 Critérios de Validação do CPF</h2>
+            <ul>
+                <li><strong>Formato:</strong> 11 dígitos (XXX.XXX.XXX-XX)</li>
+                <li><strong>Regra 1:</strong> Não pode ter todos os dígitos iguais</li>
+                <li><strong>Regra 2 (1º dígito):</strong> Multiplicar os 9 primeiros dígitos por 10,9,8...2 e somar. Resto da divisão por 11 define o dígito</li>
+                <li><strong>Regra 3 (2º dígito):</strong> Mesmo processo incluindo o 1º dígito, multiplicando por 11,10,9...2</li>
+            </ul>
+            <div class="formula">
+                Exemplo: CPF 123.456.789-09<br>
+                → 1º dígito: (1x10 + 2x9 + 3x8 + ... + 9x2) = resto 5 → dígito = 0<br>
+                → 2º dígito: (1x11 + 2x10 + ... + 9x3 + 0x2) = resto 2 → dígito = 9
+            </div>
+        </div>
+
+        <div class="cpf-box">
+            <h3>CPF Gerado:</h3>
+            <div id="cpfGerado">--.---.---/--</div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="gerarCPF()">🎲 Gerar Novo CPF</button>
+                <button class="btn btn-copy" onclick="copiarCPF()">📋 Copiar CPF</button>
+            </div>
+        </div>
+
+        <div class="validation-section">
+            <h3>✅ Validar CPF</h3>
+            <div class="input-group">
+                <input type="text" id="cpfInput" placeholder="Digite o CPF (ex: 123.456.789-09)" maxlength="14">
+                <button id="validarBtn" onclick="validarCPFInput()">Validar</button>
+            </div>
+            <div id="resultadoValidacao"></div>
+        </div>
+
+        <div class="alert" id="alert">
+            CPF copiado para a área de transferência!
+        </div>
+
+        <div class="footer">
+            <p>Teste o CPF gerado em sites validadores como: www.4devs.com.br/validador_cpf</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
